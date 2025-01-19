@@ -7,6 +7,9 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   i18n: {
+    fallback: {
+      ru: "en",
+    },
     routing: {
       prefixDefaultLocale: false,
     },
