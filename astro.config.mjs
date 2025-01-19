@@ -16,5 +16,5 @@ export default defineConfig({
     locales: ["en", "ru"],
     defaultLocale: "en",
   },
-  integrations: [svelte(), tailwind()],
+  integrations: [svelte(), tailwind({ applyBaseStyles: false })],
 });
