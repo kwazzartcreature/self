@@ -29,6 +29,15 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    --cosmos-bg-start: 0 0% 95%;
+    --cosmos-bg-middle: 0 0% 90%;
+    --cosmos-bg-end: 0 0% 85%;
+
+    --stars-color-1: 0 0% 10%;
+    --stars-color-2: 0 0% 15%;
+    --stars-color-3: 0 0% 20%;
+    --stars-color-4: 0 0% 25%;
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -55,20 +64,33 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    --cosmos-bg-start: 222.2 40% 5%;
+    --cosmos-bg-middle: 222.2 40% 10%;
+    --cosmos-bg-end: 222.2 40% 15%;
+
+    --stars-color-1: 0 0% 95%;
+    --stars-color-2: 0 0% 90%;
+    --stars-color-3: 0 0% 85%;
+    --stars-color-4: 0 0% 80%;
   }
 
   body {
-    @apply text-foreground;
+    @apply text-foreground bg-background;
     font-family: "Space Grotesk Variable", sans-serif;
   }
 
+  * {
+    @apply border-border;
+  }
+
   .card {
-    @apply bg-card text-card-foreground border border-border;
+    @apply bg-card text-card-foreground border;
   }
 
   input,
   textarea {
-    @apply bg-input text-foreground border border-border;
+    @apply bg-input text-foreground border;
   }
 
   input:focus,
@@ -81,9 +103,9 @@
   .cosmos {
     background: radial-gradient(
       circle,
-      hsl(0, 0%, 5%),
-      hsl(222.2, 40%, 15%) 60%,
-      hsl(222.2, 40%, 10%)
+      hsl(var(--cosmos-bg-start)),
+      hsl(var(--cosmos-bg-middle)) 60%,
+      hsl(var(--cosmos-bg-end))
     );
     position: relative;
     overflow: hidden;
@@ -97,13 +119,41 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(2px 2px at 15% 20%, white, transparent),
-      radial-gradient(1.5px 1.5px at 40% 10%, hsl(0, 0%, 80%), transparent),
-      radial-gradient(2px 2px at 70% 30%, hsl(0, 0%, 90%), transparent),
-      radial-gradient(2px 2px at 25% 75%, white, transparent),
-      radial-gradient(2px 2px at 80% 85%, hsl(0, 0%, 70%), transparent),
-      radial-gradient(2px 2px at 50% 50%, hsl(0, 0%, 90%), transparent),
-      radial-gradient(2px 2px at 60% 90%, white, transparent);
+    background: radial-gradient(
+        2px 2px at 15% 20%,
+        hsl(var(--stars-color-1)),
+        transparent
+      ),
+      radial-gradient(
+        1.5px 1.5px at 40% 10%,
+        hsl(var(--stars-color-2)),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 70% 30%,
+        hsl(var(--stars-color-3)),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 25% 75%,
+        hsl(var(--stars-color-1)),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 80% 85%,
+        hsl(var(--stars-color-4)),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 50% 50%,
+        hsl(var(--stars-color-3)),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 60% 90%,
+        hsl(var(--stars-color-1)),
+        transparent
+      );
     background-size: 150px 150px;
     animation: twinkling 3s infinite alternate ease-in-out;
     pointer-events: none;

@@ -6,8 +6,16 @@ import { PostSchema, ProjectSchema, RoleSchema, ValueSchema } from "./schemas";
 const adminPB = await getAdminPB();
 
 const portraits = defineCollection({
-  loader: glob({ pattern: "**/*.jpg", base: "./src/assets/images/portraits" }),
-  schema: z.string().url(),
+  loader: async () => {
+    const portraits = await adminPB.collection("portraits").getFullList();
+    return portraits.map((portrait) => {
+      return {
+        id: portrait.id,
+        url: adminPB.files.getURL(portrait, portrait.image),
+      };
+    });
+  },
+  schema: z.object({ url: z.string().url() }),
 });
 
 const posts = defineCollection({
@@ -44,4 +52,4 @@ const values = defineCollection({
   schema: ValueSchema,
 });
 
-export const collections = { posts, projects, roles, values };
+export const collections = { portraits, posts, projects, roles, values };

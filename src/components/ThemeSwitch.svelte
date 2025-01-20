@@ -35,7 +35,7 @@
   <Circle size={24} />
 {:else}
   <button onclick={handleThemeToggle}>
-    <div>
+    <div class="hover:text-primary transition">
       {#if theme === "dark"}
         <Sun />
       {:else}
