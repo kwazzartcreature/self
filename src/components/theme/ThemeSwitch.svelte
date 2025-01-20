@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import Moon from "../assets/icons/Moon.svelte";
-  import Circle from "../assets/icons/Circle.svelte";
-  import Sun from "../assets/icons/Sun.svelte";
+  import Moon from "../../assets/icons/Moon.svelte";
+  import Circle from "../../assets/icons/Circle.svelte";
+  import Sun from "../../assets/icons/Sun.svelte";
 
   let mount = $state(false);
   let theme = $state("");

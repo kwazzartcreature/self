@@ -4,6 +4,8 @@ import { defineConfig, envField } from "astro/config";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
   env: {
@@ -30,10 +32,12 @@ export default defineConfig({
       }),
     },
   },
+
   prefetch: {
     prefetchAll: true,
     defaultStrategy: "viewport",
   },
+
   i18n: {
     fallback: {
       ru: "en",
@@ -44,5 +48,10 @@ export default defineConfig({
     locales: ["en", "ru"],
     defaultLocale: "en",
   },
+
   integrations: [svelte(), tailwind({ applyBaseStyles: false })],
+
+  adapter: node({
+    mode: "standalone",
+  }),
 });
