@@ -1,0 +1,14 @@
+---
+import MainLayout from "../../layouts/Main.astro";
+
+export const getStaticPaths = (() => {
+    return [
+        { params: { lang: undefined } },
+        { params: { lang: "ru" } },
+    ];
+});
+---
+
+<MainLayout>
+    <h1 class="text-cente text-3xl text-primary text-center">Kwazzart!</h1>
+</MainLayout>

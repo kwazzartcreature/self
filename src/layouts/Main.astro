@@ -1,0 +1,45 @@
+---
+import RootLayout from "./Root.astro"
+import ThemeController from '$lib/components/ThemeController.astro'
+import { getAbsoluteLocaleUrl } from 'astro:i18n'
+---
+
+<RootLayout>
+    <div class="h-screen space md:py-6 md:px-4">
+        <div class="stars"></div>
+        
+    <div class="flex h-full border-2 border-primary bg-background/80">
+        <aside class="flex flex-col h-full flex-1 md:max-w-md border">
+            <header class="py-2 px-4 flex md:hidden justify-end">head</header>
+            <main></main>
+        </aside>
+
+        <div class="flex-col flex-1 border hidden md:flex">
+            <header class="flex justify-between items-center py-2 px-4">
+                <nav>
+                    <ul class="flex gap-x-4">
+                        <li>
+                            <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'projects')}>projects</a>
+                        </li>
+                        <li>
+                            <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'blog')}>blog</a>
+                        </li>
+                        <li>
+                            <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'about')}>about</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <aside>
+                    <ThemeController/>
+                </aside>
+            </header>
+            
+            <main class="flex-1">
+                <slot />
+            </main>
+        </div>
+        
+    </div>
+</div>
+</RootLayout>

@@ -1,38 +1,24 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import Moon from "../assets/Moon.svelte";
-  import Circle from "../assets/Circle.svelte";
-  import Sun from "../assets/Sun.svelte";
+  import Moon from "../assets/icons/Moon.svelte";
+  import Circle from "../assets/icons/Circle.svelte";
+  import Sun from "../assets/icons/Sun.svelte";
 
-  let body: HTMLElement | null = null;
   let mount = $state(false);
   let theme = $state("");
 
   onMount(() => {
-    theme = getTheme();
-    setTheme(theme);
+    theme = localStorage.getItem("theme") ?? "light";
     mount = true;
   });
-
-  const getTheme = () => {
-    const localStorageTheme = localStorage.getItem("theme") ?? "";
-    if (["dark", "light"].includes(localStorageTheme)) {
-      return localStorageTheme;
-    }
-
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
-  };
 
   const setTheme = (newTheme: string) => {
     theme = newTheme;
     localStorage.setItem("theme", newTheme);
     if (newTheme === "dark") {
-      body?.classList.add("dark");
+      document?.documentElement.classList.add("dark");
     } else {
-      body?.classList.remove("dark");
+      document?.documentElement.classList.remove("dark");
     }
   };
 
@@ -45,10 +31,8 @@
   };
 </script>
 
-<svelte:body bind:this={body} />
-
 {#if !mount}
-  <Circle size={20} />
+  <Circle size={24} />
 {:else}
   <button onclick={handleThemeToggle}>
     <div>

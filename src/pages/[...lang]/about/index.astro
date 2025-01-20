@@ -1,0 +1,15 @@
+---
+import MainLayout from '../../../layouts/Main.astro';
+
+export const getStaticPaths = (() => {
+    return [
+        { params: { lang: undefined } },
+        { params: { lang: "ru" } },
+    ];
+});
+---
+<MainLayout>
+	<div>
+		<h1 class="text-3xl text-center">There will be main information about the blog</h1>	
+	</div>
+</MainLayout>
