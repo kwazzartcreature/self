@@ -50,37 +50,37 @@
   });
 </script>
 
-<Carousel.Root
-  bind:api={emblaApi}
-  opts={{
-    align: "start",
-    loop: true,
-  }}
-  class="mx-auto w-4/5"
->
-  <Carousel.Content class="basis-1/3 flex items-center">
-    {#each values as value, i (value.id)}
-      <Carousel.Item>
-        <div>
-          <Card.Root>
-            <Card.Content class="flex items-center justify-center p-6">
-              <span class="text-xl font-semibold"
+<div class="w-screen md:w-full">
+  <Carousel.Root
+    bind:api={emblaApi}
+    opts={{
+      align: "start",
+      loop: true,
+    }}
+    class="mx-auto md:w-4/5 max-w-md"
+  >
+    <Carousel.Content class="flex items-center">
+      {#each values as value (value.id)}
+        <Carousel.Item>
+          <Card.Root class="md:w-full mx-auto">
+            <Card.Content class="flex items-center justify-center md:p-6">
+              <span class="text-lg md:text-xl font-semibold"
                 >{value.data.content[lang].content}</span
               >
             </Card.Content>
           </Card.Root>
-        </div>
-      </Carousel.Item>
-    {/each}
-  </Carousel.Content>
+        </Carousel.Item>
+      {/each}
+    </Carousel.Content>
 
-  <Carousel.Previous />
+    <Progress value={timeSeconds} max={maxTimeSeconds} />
 
-  <Carousel.Next />
+    <div class="hidden md:block">
+      <Carousel.Previous />
+    </div>
 
-  <!-- <Button onclick={handlePrevClick}><ChevronRight class="rotate-180" /></Button> -->
-
-  <!-- <Button onclick={handleNextClick}><ChevronRight /></Button> -->
-
-  <Progress value={timeSeconds} max={maxTimeSeconds} />
-</Carousel.Root>
+    <div class="hidden md:block">
+      <Carousel.Next />
+    </div>
+  </Carousel.Root>
+</div>

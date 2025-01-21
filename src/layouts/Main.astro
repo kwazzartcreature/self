@@ -26,8 +26,8 @@ const socials = await getCollection('socials');
     <div class="h-screen space md:py-6 md:px-4">
         <div class="stars"></div>
             
-        <div class="flex h-full gap-x-2 *:border *:transition *:bg-background/60">
-            <aside class="hover:border-primary transition flex flex-col h-full flex-1 md:max-w-md">
+        <div class="flex h-full gap-x-2 *:transition *:bg-background/60 md:*:border">
+            <aside class="h-fit hover:border-primary transition flex flex-col min-h-full flex-1 md:max-w-md">
                 <header class="py-2 px-4 flex md:hidden justify-between">
                     <aside class="flex gap-x-2">
                         <ThemeController/>
