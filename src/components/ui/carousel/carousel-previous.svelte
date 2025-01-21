@@ -7,7 +7,7 @@
     Button,
     type Props,
     type buttonVariants,
-  } from "$lib/registry/default/ui/button/index.js";
+  } from "$lib/components/ui/button";
 
   type $$Props = Props;
 

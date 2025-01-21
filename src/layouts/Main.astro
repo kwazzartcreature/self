@@ -2,6 +2,7 @@
 import { getAbsoluteLocaleUrl } from 'astro:i18n'
 import { DesktopNav, MobileNav } from '$lib/components/nav'
 import Roles from '$lib/components/roles'
+import Values from '$lib/components/values'
 import ThemeController from '$lib/components/theme'
 import RootLayout from "./Root.astro"
 import { Image } from 'astro:assets';
@@ -13,7 +14,6 @@ const portraits = await getCollection('portraits');
 const randomPortraitIndex = Math.floor(Math.random() * portraits.length);
 
 const values = await getCollection('values');
-const randomValueIndex = Math.floor(Math.random() * portraits.length);
 
 const roles = await getCollection('roles');
 
@@ -68,8 +68,8 @@ const socials = await getCollection('socials');
                     </section>
 
                     <section class="text-center">
-                        <h4 class="text-2xl">Values</h4>
-                        <p class="text-xl">{values[randomValueIndex].data.content[lang].content}</p>
+                        <h4 class="text-lg font-semibold">Values</h4>
+                        <Values lang={lang} values={values} client:load/>
                     </section>
 
                     <section class="text-center space-y-2">
