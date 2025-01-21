@@ -1,5 +1,5 @@
 import { defineCollection, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { file } from "astro/loaders";
 import { getAdminPB } from "../server/pb";
 import {
   PostSchema,
@@ -80,9 +80,9 @@ const socials = defineCollection({
   }),
 });
 
-// const general = defineCollection({
-//   loader: g
-// })
+const general = defineCollection({
+  loader: file("src/content/general.json"),
+});
 
 export const collections = {
   portraits,
@@ -92,4 +92,5 @@ export const collections = {
   roles,
   values,
   socials,
+  general,
 };

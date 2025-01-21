@@ -40,8 +40,8 @@
     resetInterval();
 
     timeInterval = setInterval(() => {
-      timeSeconds++;
-    }, 1000);
+      timeSeconds += 2;
+    }, 2000);
 
     return () => {
       if (interval) clearInterval(interval);
@@ -50,7 +50,7 @@
   });
 </script>
 
-<div class="w-screen md:w-full">
+<div class="w-[calc(100vw-100px)] md:w-full mx-auto">
   <Carousel.Root
     bind:api={emblaApi}
     opts={{
@@ -75,12 +75,8 @@
 
     <Progress value={timeSeconds} max={maxTimeSeconds} />
 
-    <div class="hidden md:block">
-      <Carousel.Previous />
-    </div>
+    <Carousel.Previous />
 
-    <div class="hidden md:block">
-      <Carousel.Next />
-    </div>
+    <Carousel.Next />
   </Carousel.Root>
 </div>
