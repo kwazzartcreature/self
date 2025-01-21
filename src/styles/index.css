@@ -77,7 +77,8 @@
 
   body {
     @apply text-foreground bg-background;
-    font-family: "Space Grotesk Variable", sans-serif;
+    /* font-family: "Space Grotesk Variable", sans-serif; */
+    font-family: "Fusion Pixel 12px Monospaced TC", sans-serif;
   }
 
   * {

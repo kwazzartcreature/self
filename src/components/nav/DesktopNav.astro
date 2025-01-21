@@ -12,7 +12,7 @@ const check = (path: string) => {
         <li class:list={
             [
                 "hover:underline", 
-                {"underline": check('')}
+                {"underline": check(getAbsoluteLocaleUrl(Astro.currentLocale || 'en', ''))}
             ]
         }>
             <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en', '')}>about</a>
@@ -20,7 +20,7 @@ const check = (path: string) => {
         <li class:list={
             [
                 "hover:underline", 
-                {"underline": check('projects')}
+                {"underline": check(getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'projects'))}
             ]
         }>
             <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'projects')}>projects</a>
@@ -28,7 +28,7 @@ const check = (path: string) => {
         <li class:list={
             [
                 "hover:underline", 
-                {"underline": check('blog')}
+                {"underline": check(getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'blog'))}
             ]
         }>
             <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'blog')}>blog</a>

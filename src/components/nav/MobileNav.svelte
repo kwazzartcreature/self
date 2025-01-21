@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as Dialog from "$lib/components/ui/dialog";
+  import { Menu } from "lucide-svelte";
   import { checkPath } from "./utils";
 
   interface Props {
@@ -15,7 +16,7 @@
 </script>
 
 <Dialog.Root>
-  <Dialog.Trigger>Menu</Dialog.Trigger>
+  <Dialog.Trigger><Menu /></Dialog.Trigger>
 
   <Dialog.Content>
     <Dialog.Header>
@@ -23,8 +24,9 @@
         <nav>
           <ul class="text-2xl">
             {#each hrefs as href}
+              {@const content = href.split("/")}
               <li class={check(href) ? "underline" : ""}>
-                <a {href}> {href.split("/").at(2) || "about"} </a>
+                <a {href}> {content.at(content.length - 2) || "about"} </a>
               </li>
             {/each}
           </ul>

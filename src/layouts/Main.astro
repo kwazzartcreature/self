@@ -1,8 +1,25 @@
 ---
 import { getAbsoluteLocaleUrl } from 'astro:i18n'
 import { DesktopNav, MobileNav } from '$lib/components/nav'
+import Roles from '$lib/components/roles'
 import ThemeController from '$lib/components/theme'
 import RootLayout from "./Root.astro"
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+const lang = Astro.currentLocale as 'en' | 'ru' || 'en'
+
+const portraits = await getCollection('portraits');
+const randomPortraitIndex = Math.floor(Math.random() * portraits.length);
+
+const values = await getCollection('values');
+const randomValueIndex = Math.floor(Math.random() * portraits.length);
+
+const roles = await getCollection('roles');
+
+const tools = await getCollection('tools');
+
+const socials = await getCollection('socials');
 ---
 
 <RootLayout>
@@ -11,9 +28,14 @@ import RootLayout from "./Root.astro"
             
         <div class="flex h-full gap-x-2 *:border *:transition *:bg-background/60">
             <aside class="hover:border-primary transition flex flex-col h-full flex-1 md:max-w-md">
-                <header class="py-2 px-4 flex md:hidden justify-end">
+                <header class="py-2 px-4 flex md:hidden justify-between">
+                    <aside class="flex gap-x-2">
+                        <ThemeController/>
+                        <div>lang</div>
+                    </aside>
+
                     <MobileNav
-                        lang={Astro.currentLocale || 'en'}
+                        lang={lang}
                         currentPath={Astro.url.pathname}
                         hrefs={[
                             getAbsoluteLocaleUrl(Astro.currentLocale || 'en', ''),
@@ -23,14 +45,63 @@ import RootLayout from "./Root.astro"
                         client:load
                     />
                 </header>
-                <main>
+                <main class="px-4 py-6 space-y-10">
+                    <section class="space-y-1 text-center">
+                        <div class="flex justify-center">
+                            <Image
+                            class="rounded-full border-primary border-2 aspect-square object-center object-cover filter hover:brightness-75 transition"
+                            src={portraits[randomPortraitIndex].data.url}
+                            alt="Vladimir Belyaev"
+                            width="200"
+                            height="100"
+                            />
+                        </div>
+                        <h3 class="text-2xl font-semibold">
+                            <div>Kwazzart | Vladimir Belyaev</div>
+                            <div>(21 y.o.)</div>
+                        </h3>
+                        <Roles lang={Astro.currentLocale || 'en'} roles={roles} client:load/>
+                    </section>
+
+                    <section class="text-center md:hidden">
+                        <h4 class="text-2xl">About</h4>
+                    </section>
+
+                    <section class="text-center">
+                        <h4 class="text-2xl">Values</h4>
+                        <p class="text-xl">{values[randomValueIndex].data.content[lang].content}</p>
+                    </section>
+
+                    <section class="text-center space-y-2">
+                        <h4 class="text-2xl">Favorite Tech</h4>
+                        <ul class="flex gap-x-4 gap-y-2 flex-wrap justify-center">
+                            {tools.map((tool) => (
+                                <li class="">
+                                    <a set:html={tool.data.icon} href={tool.data.url} target="_blank" rel="noopener noreferrer">
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+
+                    <section class="text-center">
+                        <h4 class="text-2xl">Socials</h4>
+                        <ul class="flex gap-x-5 items-center justify-center">
+                            {socials.map((social) => (
+                                <li>
+                                    <a set:html={social.data.icon} href={social.data.url} target="_blank" rel="noopener noreferrer">
+                                    </a>
+                                </li>
+                            ))}
+                    </section>
                 </main>
             </aside>
 
             <div class= "hover:border-primary flex-col flex-1 hidden md:flex">
                 <header class="flex justify-between items-center py-2 pl-4 pr-2">
                     <DesktopNav/>
-                    <aside >
+                    <aside class="flex gap-x-2">
+                        <div>lang</div>
                         <ThemeController/>
                     </aside>
                 </header>

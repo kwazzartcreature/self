@@ -1,7 +1,13 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 import { getAdminPB } from "../server/pb";
-import { PostSchema, ProjectSchema, RoleSchema, ValueSchema } from "./schemas";
+import {
+  PostSchema,
+  ProjectSchema,
+  RoleSchema,
+  ToolSchema,
+  ValueSchema,
+} from "./schemas";
 
 const adminPB = await getAdminPB();
 
@@ -11,7 +17,9 @@ const portraits = defineCollection({
     return portraits.map((portrait) => {
       return {
         id: portrait.id,
-        url: adminPB.files.getURL(portrait, portrait.image),
+        url: adminPB.files.getURL(portrait, portrait.image, {
+          thumb: "200x200",
+        }),
       };
     });
   },
@@ -24,6 +32,14 @@ const posts = defineCollection({
     return posts;
   },
   schema: PostSchema,
+});
+
+const tools = defineCollection({
+  loader: async () => {
+    const tools = await adminPB.collection("tools").getFullList();
+    return tools;
+  },
+  schema: ToolSchema,
 });
 
 const projects = defineCollection({
@@ -52,4 +68,28 @@ const values = defineCollection({
   schema: ValueSchema,
 });
 
-export const collections = { portraits, posts, projects, roles, values };
+const socials = defineCollection({
+  loader: async () => {
+    const socials = await adminPB.collection("socials").getFullList();
+    return socials;
+  },
+  schema: z.object({
+    url: z.string().url(),
+    icon: z.string(),
+    name: z.string(),
+  }),
+});
+
+// const general = defineCollection({
+//   loader: g
+// })
+
+export const collections = {
+  portraits,
+  posts,
+  tools,
+  projects,
+  roles,
+  values,
+  socials,
+};

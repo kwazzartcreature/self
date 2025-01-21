@@ -13,6 +13,7 @@
     "@astrojs/svelte": "^7.0.3",
     "@astrojs/tailwind": "^5.1.4",
     "@fontsource-variable/space-grotesk": "^5.1.1",
+    "@fontsource/fusion-pixel-12px-monospaced-tc": "^5.0.1",
     "astro": "^5.1.7",
     "embla-carousel-svelte": "^8.5.2",
     "lucide-svelte": "^0.473.0",
