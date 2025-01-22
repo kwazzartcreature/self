@@ -41,8 +41,14 @@
     },
 
     "about": {
-      "en": "",
-      "ru": ""
+      "title": {
+        "en": "About",
+        "ru": "От себя"
+      },
+      "content": {
+        "en": "Hi! I'm a tech generalist passionate about building cool stuff. With skills across frontend, backend, and infrastructure, I self-host my projects and love taking full responsibility for end-to-end solutions. I'm fascinated by how much impact one person can make in today's tech world, especially with the rise of AI. Whether you want to chat about tech or have an exciting project idea, let's connect! I'm always up for new adventures :D",
+        "ru": "Привет! Я технический специалист-универсал, увлечённый созданием крутых проектов. Владею навыками во фронтенде, бэкенде и инфраструктуре, самостоятельно хощу свои проекты и обожаю брать полную ответственность за end-to-end решения. Меня восхищает, какое влияние может оказать один человек в современном технологичном мире, особенно с развитием ИИ. Хотите обсудить технологии или есть идея проекта? Давайте свяжемся! Я всегда открыт новым приключениям :D"
+      }
     }
   }
 ]
