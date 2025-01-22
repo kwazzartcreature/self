@@ -1,6 +1,7 @@
 ---
 import { getAbsoluteLocaleUrl } from 'astro:i18n'
-import { DesktopNav, MobileNav } from '$lib/components/nav'
+import DesktopNav from '$lib/components/nav/DesktopNav.astro'
+import MobileNav from '$lib/components/nav/MobileNav.svelte'
 import Roles from '$lib/components/roles'
 import Values from '$lib/components/values'
 import LangSelect from '$lib/components/lang'
@@ -8,21 +9,20 @@ import ThemeController from '$lib/components/theme'
 import RootLayout from "./Root.astro"
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import Age from '$lib/components/age'
 
 const lang = Astro.currentLocale as 'en' | 'ru' || 'en'
 
-const portraits = await getCollection('portraits');
+const [portraits, values, roles, tools, socials, generalBase] = await Promise.all([
+  getCollection('portraits'),
+  getCollection('values'),
+  getCollection('roles'),
+  getCollection('tools'),
+  getCollection('socials'),
+  getCollection('general')
+]);
+const general = generalBase[0].data
 const randomPortraitIndex = Math.floor(Math.random() * portraits.length);
-
-const values = await getCollection('values');
-
-const roles = await getCollection('roles');
-
-const tools = await getCollection('tools');
-
-const socials = await getCollection('socials');
-
-const general = await getCollection('general')
 ---
 
 <RootLayout>
@@ -60,8 +60,8 @@ const general = await getCollection('general')
                             />
                         </div>
                         <h3 class="text-2xl font-semibold">
-                            <div>Kwazzart | Vladimir Belyaev</div>
-                            <div>(21 y.o.)</div>
+                            <div>{general.name[lang]}</div>
+                            <Age client:load/>
                         </h3>
                         <Roles lang={Astro.currentLocale || 'en'} roles={roles} client:load/>
                     </section>
@@ -71,12 +71,12 @@ const general = await getCollection('general')
                     </section>
 
                     <section class="text-center">
-                        <h4 class="text-lg font-semibold">Values</h4>
+                        <h4 class="text-lg font-semibold">{general.values[lang]}</h4>
                         <Values lang={lang} values={values} client:load/>
                     </section>
 
                     <section class="text-center space-y-2">
-                        <h4 class="text-2xl">Favorite Tech</h4>
+                        <h4 class="text-2xl">{general.stack[lang]}</h4>
                         <ul class="flex gap-x-4 gap-y-2 flex-wrap justify-center">
                             {tools.map((tool) => (
                                 <li class="">

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/node": "^9.0.1",
+    "@astrojs/sitemap": "^3.2.1",
     "@astrojs/svelte": "^7.0.3",
     "@astrojs/tailwind": "^5.1.4",
     "@fontsource-variable/space-grotesk": "^5.1.1",

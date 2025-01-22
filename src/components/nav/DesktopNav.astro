@@ -1,37 +1,25 @@
 ---
+import { getCollection } from 'astro:content';
 import { getAbsoluteLocaleUrl } from 'astro:i18n'
-import { checkPath } from './utils';
 
 const check = (path: string) => {
-    return checkPath(Astro.currentLocale || 'en', Astro.url.pathname, path);
+    return Astro.url.pathname === getAbsoluteLocaleUrl(Astro.currentLocale || 'en', path);
 }
+
+const general = (await getCollection("general"))[0].data;
 ---
 
 <nav>
     <ul class="flex gap-x-4 text-lg">
-        <li class:list={
-            [
-                "hover:underline", 
-                {"underline": check(getAbsoluteLocaleUrl(Astro.currentLocale || 'en', ''))}
-            ]
-        }>
-            <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en', '')}>about</a>
-        </li>
-        <li class:list={
-            [
-                "hover:underline", 
-                {"underline": check(getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'projects'))}
-            ]
-        }>
-            <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'projects')}>projects</a>
-        </li>
-        <li class:list={
-            [
-                "hover:underline", 
-                {"underline": check(getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'blog'))}
-            ]
-        }>
-            <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en', 'blog')}>blog</a>
-        </li>
+        {general.nav.map((item: any) => (
+            <li class:list={
+                [
+                    "hover:underline", 
+                    {"underline": check(item.link)}
+                ]
+            }>
+                <a href={getAbsoluteLocaleUrl(Astro.currentLocale || 'en', item.link)}>{item.name[Astro.currentLocale || 'en']}</a>
+            </li>
+        ))}
     </ul>
 </nav>

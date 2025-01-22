@@ -4,24 +4,10 @@
     "nav": [
       {
         "name": {
-          "en": "Home",
+          "en": "About",
           "ru": "Главная"
         },
         "link": "/"
-      },
-      {
-        "name": {
-          "en": "About",
-          "ru": "О нас"
-        },
-        "link": "/about"
-      },
-      {
-        "name": {
-          "en": "Values",
-          "ru": "Ценности"
-        },
-        "link": "/values"
       },
       {
         "name": {
@@ -32,10 +18,10 @@
       },
       {
         "name": {
-          "en": "Contacts",
-          "ru": "Контакты"
+          "en": "Blog",
+          "ru": "Блог"
         },
-        "link": "/contacts"
+        "link": "/blog"
       }
     ],
 
@@ -49,9 +35,14 @@
       "ru": "Ценности"
     },
 
-    "roles": {
-      "en": "Roles",
-      "ru": "Роли"
+    "stack": {
+      "en": "Some technologies I use :3",
+      "ru": "Часто-используемые технологии :3"
+    },
+
+    "about": {
+      "en": "",
+      "ru": ""
     }
   }
 ]

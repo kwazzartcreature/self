@@ -23,11 +23,20 @@
   function resetInterval() {
     timeSeconds = 0;
     if (interval) clearInterval(interval);
+    if (timeInterval) {
+      clearInterval(timeInterval);
+      timeInterval = setInterval(() => {
+        timeSeconds += 2.5;
+      }, 2500);
+    }
 
-    interval = setInterval(() => {
-      timeSeconds = 0;
-      if (emblaApi) emblaApi.scrollNext();
-    }, maxTimeSeconds * 1000);
+    interval = setInterval(
+      () => {
+        timeSeconds = 0;
+        if (emblaApi) emblaApi.scrollNext();
+      },
+      maxTimeSeconds * 1000 + 500
+    );
   }
 
   $effect(() => {
@@ -40,8 +49,8 @@
     resetInterval();
 
     timeInterval = setInterval(() => {
-      timeSeconds += 2;
-    }, 2000);
+      timeSeconds += 2.5;
+    }, 2500);
 
     return () => {
       if (interval) clearInterval(interval);
